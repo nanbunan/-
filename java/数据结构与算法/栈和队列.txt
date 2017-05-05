@@ -1,0 +1,40 @@
+一、Stack（栈）的方法
+
+1. public void push（int node）  把项 压入栈顶。其作用与 addElement (node) 相同。   不一定是int，可以是节点
+
+stack.push(node);
+2. public void pop () 移除栈顶对象，并作为函数的值 返回该对象。
+
+stack.pop();
+3. public int peek() 查看栈顶对象而不移除它
+
+top=stack.peek();
+4. public boolean empty （测试堆栈是否为空。）  当且仅当堆栈中不含任何项时 返回 true，否则 返回 false.
+
+if(!stack.empty())
+5. public int search  (object o)  返回对象在堆栈中位置， 以 1 为基数， 如果对象 ｏ是栈中的一项，该方法返回距离　栈顶最近的出现位置到栈顶的距离；　栈中最上端项的距离为　１　。　使用equals 方法比较 o 与 堆栈中的项。。。    
+
+二、Queue（队）的方法
+
+LinkedList实现了Queue接口
+
+Queue queue=new LinkedList();
+public boolean isEmpty
+
+if(!queue.isEmpty())
+add        增加一个元索                     如果队列已满，则抛出一个IIIegaISlabEepeplian异常 
+
+queue.add(node);
+remove   移除并返回队列头部的元素    如果队列为空，则抛出一个NoSuchElementException异常
+
+queue.remove();
+peek       返回队列头部的元素             如果队列为空，则返回null
+
+int head=queue.peek();
+element  返回队列头部的元素             如果队列为空，则抛出一个NoSuchElementException异常
+
+offer       添加一个元素并返回true       如果队列已满，则返回false
+poll         移除并返问队列头部的元素    如果队列为空，则返回null
+
+put         添加一个元素                      如果队列满，则阻塞
+take        移除并返回队列头部的元素     如果队列为空，则阻塞
