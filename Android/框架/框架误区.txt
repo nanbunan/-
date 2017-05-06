@@ -1,0 +1,55 @@
+//bmobsdk内嵌了okhttp需要去掉才能使用okgo不然会起冲突
+    compile('cn.bmob.android:bmob-sdk:3.4.3', { exclude module: "okhttp" })
+
+
+ //dialog相关
+    compile 'com.afollestad.material-dialogs:commons:0.9.4.4'
+
+//是否退出弹框使用方法 其中使用了java8 lambda表达
+
+ @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            new MaterialDialog.Builder(MainActivityDrawerLayout.this)
+                    .title(getResources().getString(R.string.tip))
+                    .content(getResources().getString(R.string.exit))
+                    .negativeText(getResources().getString(R.string.cancel))
+                    .onNegative((dialog, which) -> dialog.dismiss()).positiveText(getResources().getString(R.string.ok))
+                    .onPositive((dialog, which) -> {
+                        finish();
+                        dialog.dismiss();
+                    }).show();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+//java8使用方法 
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+    defaultConfig {
+        applicationId "com.example.administrator.musicplayer"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //使用Jack编译器
+        jackOptions {
+            enabled true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8   //在此处声明java8
+        sourceCompatibility 1.8
+    }
+}
