@@ -1,0 +1,19 @@
+如何去解决fatal: refusing to merge unrelated histories
+
+我在Github新建一个仓库，写了License，然后把本地一个写了很久仓库上传。
+
+先pull，因为两个仓库不同，发现refusing to merge unrelated histories，无法pull
+
+因为他们是两个不同的项目，要把两个不同的项目合并，git需要添加一句代码，在git pull，
+这句代码是在git 2.9.2版本发生的，最新的版本需要添加--allow-unrelated-histories
+git pull origin master ----allow-unrelated-histories
+
+
+vim编辑器提交信息
+
+在命令行中输入 Git commit '.'时没有加入-m，会自动出来一个让填写提交说明的窗口,输入后该如何操作？
+
+摁键盘i,最下面有所变化，转换为插入状态（insert）此时光标在最上面，可以在最上面填写内容
+
+填写完毕后按Esc,然后输入:光标跑到了最下面
+输入wq（保存并退出）之后，摁回车即可，就要回到了原始的命令行界面
