@@ -1,0 +1,27 @@
+在将一个Eclipse的项目转移到AndroidStudio的过程中，碰到了的问题如下：
+
+（我遇到的错误是打开点九图片无意间在边缘点了一个点，造成边缘线成了一条直线和一个点）
+
+Error:Execution failed for task ':learnChinese:mergeDebugResources'.
+> Error: java.util.concurrent.ExecutionException:com.android.ide.common.process.ProcessException:
+1
+2
+从报错来看可以定位到时资源文件出问题了，一个在Android 上运行好好的项目怎么会在AndroidStudio里面出现这种问题，顿觉头大了，查阅各种资料后来才发现了原来是.9.png图片造成的，真是作孽啊～
+
+“点九”是andriod平台的应用软件开发里的一种特殊的图片形式，文件扩展名为：.9.png，也就是说项目资源文件夹中，只要图片的文件后缀是.9.png的，就说明这是点9图片，当我们用Eclipse等编译的时候，它遇到文件后缀是.9.png的文件，首先检查它实际上是不是点9图片，如果是，按点9图片处理;如果不是，按找默认图片处理。也就是说Eclipse自动帮我们完成了转化，容忍了我们的图片格式错误。
+
+AndroidStudio使用的是android-maven-plugin插件，在aAndroidStudio下报错的原因，是因为声明为点9图片的文件，实际上不是真正的点9图片，解析图片出错。android-maven-plugin插件会严格检查图片格式，如果不匹配就报错。
+
+解决方法：
+
+要么把图片制作成点9图片，要么去掉图片文件名中的.9；
+有一个朋友他出现这个问题的原因是公司的加密系统对图片进行了加密，导致AS解析图片出错，去除对这类图形文件的加密，问题也能得到解决；
+网上看到还有一种可能是：手动把图片等各式改过，比如图片原本是jpg格式然后强制改成png的也可能会出问题，改回原本的格式即可。
+去除掉PNG合法性检测，在build.gradle里的buildToolsVersion下面添加以下两句：
+
+android {
+    ...
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+    ...
+    }
