@@ -1,0 +1,9 @@
+service（服务），后台运行并不会默认开启子线程，默认在ui
+线程中。
+IntentService 覆写了onHandleIntent函数，（完成耗时操作），
+会在onHAndleIntent执行完毕后自我销毁，因此IntentService只适用于
+完成一些短期的耗时操作。
+运行在前台的service不会由于系统内存不足而被回收，还会在通知栏
+显示一条消息，下拉状态栏看到详细信息（墨迹天气在前台运行了一个service）
+
+AIDL（Android接口描述语言，通常用于进程通信）

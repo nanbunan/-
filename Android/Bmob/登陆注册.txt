@@ -1,0 +1,3 @@
+BmobUser的getCurrentUser为获取本地缓存信息，只有登陆或注册之后才会有本地缓存信息。
+logOut（）会清除本地缓存信息。
+BmobUser的注册不允许重复数据注册。

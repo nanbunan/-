@@ -1,0 +1,4 @@
+注册必须在发送之前，如果不能保证顺序，可以发送粘性（stick）广播，在注册处声明stick=true。
+有注册（register）就要有反注册（unregister），在Activity，Service，Fragment等使用前注册
+结束时反注册
+在activity和fragment传递消息时，在fragment注册时this和getActivity（）不表示同一个对象
